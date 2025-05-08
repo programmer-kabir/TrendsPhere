@@ -1,10 +1,19 @@
 "use client";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import Link from "next/link";
 import { FaBars, FaTimes } from "react-icons/fa";
+import { getUserFromToken } from "@/utils/getUserFromToken";
 const Navbar = () => {
   const [navOpen, setNavOpen] = useState(false);
-
+  const [user, setUser] = useState(null);
+  useEffect(() => {
+    const storedUser = getUserFromToken()
+    // if (storedUser) {
+    //   setUser(JSON.parse(storedUser));
+    // }
+    setUser(storedUser)
+  }, []);
+  console.log(user);
   const toggleNav = () => setNavOpen(!navOpen);
   return (
     <nav className="w-full bg-white shadow-md fixed top-0 left-0 z-50">
@@ -29,7 +38,21 @@ const Navbar = () => {
             <Link href="/contact">Contact</Link>
           </li>
           <li>
-            <Link href="/contact">Signup</Link>
+          {user ? (
+        <div className="flex items-center gap-2">
+          <p>Welcome, {user.email}</p>
+          <button
+            onClick={() => {
+              localStorage.removeItem("token");
+              setUser(null);
+            }}
+          >
+            Logout
+          </button>
+        </div>
+      ) : (
+        <Link href="/login">Login</Link>
+      )}
           </li>
         </ul>
 

@@ -2,10 +2,24 @@
 import Link from "next/link";
 import { Button, Form, Input } from "antd";
 import Image from "next/image";
+import axios from "axios";
+import { toast } from "react-toastify";
 const page = () => {
-  const onFinish = (values) => {
-    console.log(values);
+  const onFinish = async (values) => {
+    try {
+      const response = await axios.post(
+        `${process.env.NEXT_PUBLIC_BACKEND_URL}/register`,
+        values
+      );
+      localStorage.setItem("token", response.data.token);
+      
+      toast.success(response.data.message);
+    } catch (error) {
+      toast.error(error?.response?.data?.message || "Something went wrong");
+      console.error(error.response?.data);
+    }
   };
+
   return (
     <section
       className="max-w-xl mx-auto  rounded my-8 px-8 mt-20"
@@ -73,11 +87,11 @@ const page = () => {
             </h2>
             <p className="text-justify">
               Read the{" "}
-              <Link href='/' className="font-semibold text-red-700 underline">
+              <Link href="/" className="font-semibold text-red-700 underline">
                 Privacy Policy
               </Link>{" "}
               &{" "}
-              <Link href='/' className="font-semibold underline text-red-700">
+              <Link href="/" className="font-semibold underline text-red-700">
                 Terms and Conditions
               </Link>{" "}
               here before proceeding with registration. By continuing you
