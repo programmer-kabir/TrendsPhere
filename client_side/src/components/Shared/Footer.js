@@ -8,8 +8,8 @@ import Image from "next/image";
 const Footer = () => {
   return (
     <div>
-      <div className="w-full bg-slate-800 mt-10 pt-12">
-        <div className=" mx-auto md:flex justify-between items-start p-10 space-y-5 md:space-y-0 gap-5 ">
+      <div className="w-full bg-slate-800 mt-10 pt-12 ">
+        <div className=" mx-auto md:flex justify-between items-start px-4 md:p-10 space-y-5 md:space-y-0 gap-5 ">
           <div className="leading-7 flex-shrink-0 w-full md:w-1/3">
             <div className="flex flex-col justify-start items-start ">
               <div>

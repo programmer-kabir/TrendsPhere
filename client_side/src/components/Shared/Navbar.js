@@ -31,7 +31,7 @@ const Navbar = () => {
         setScrolled(false);
       }
     };
-  
+
     handleScroll(); // check once on mount
     window.addEventListener("scroll", handleScroll);
     return () => window.removeEventListener("scroll", handleScroll);
@@ -62,18 +62,24 @@ const Navbar = () => {
           pathname === "/" ? (scrolled ? "shadow-sm  " : "") : "shadow"
         }`}
       >
-        <div className="flex items-center justify-between gap-6 py-3 md:py-2 px-4 ">
+        <div className="flex items-center justify-between gap-6 py-3 md:py-2 lg:px-10 px-4">
           <Link href="/">
-            <Image src="https://iili.io/3ejP3H7.png" className="md:w-1/4 w-[80px]" width={100} height={100} alt="Logo" />
+            <Image
+              src="https://iili.io/3ejP3H7.png"
+              className="xl:w-1/4 lg:w-2/3 md:w-[120px]   w-[100px]"
+              width={100}
+              height={100}
+              alt="Logo"
+            />
           </Link>
 
-          <div className="hidden md:flex gap-6">
+          <div className="hidden lg:flex gap-6">
             <DropDown name="Men's" items={menuItems.Mens} />
             <DropDown name="Women's" items={menuItems.Womens} />
             <DropDown name="Kid's" items={menuItems.Kids} />
           </div>
 
-          <div className="hidden md:flex items-center gap-5">
+          <div className="hidden lg:flex items-center gap-5">
             <div className="w-64 py-2 px-4 bg-gray-200 rounded-full flex items-center">
               <FiSearch className="text-primary" size={20} />
               <input
@@ -86,7 +92,7 @@ const Navbar = () => {
             <Link href="/wishlist" className="relative">
               <FaRegHeart color="#f50400" size={23} />
               <span className="absolute -top-2 left-4 w-5 h-5 text-xs flex items-center justify-center rounded-full bg-[#f50400] text-white border-2 border-white">
-                {/* Wishlist count */}
+                {/* Wishlist count */}1
               </span>
             </Link>
 
@@ -108,7 +114,7 @@ const Navbar = () => {
             )}
           </div>
 
-          <div onClick={handleNav} className="block md:hidden cursor-pointer">
+          <div onClick={handleNav} className="block lg:hidden cursor-pointer">
             <HiOutlineMenuAlt3 size={28} />
           </div>
         </div>
@@ -120,16 +126,24 @@ const Navbar = () => {
           }`}
         >
           <div className="flex justify-between p-5 border-b">
-            <Image src="https://iili.io/3ejP3H7.png" width={100} height={100} alt="Logo" />
+            <Image
+              src="https://iili.io/3ejP3H7.png"
+              width={100}
+              height={100}
+              alt="Logo"
+            />
             <button onClick={handleNav}>
-              <RxCross2 className="text-[#4d4f53] cursor-pointer hover:text-white border p-2 transition-background transition-text  duration-300 ease-in-out  hover:bg-[#F62977] rounded-full " size={40} />
+              <RxCross2
+                className="text-[#4d4f53] cursor-pointer hover:text-white border p-2 transition-background transition-text  duration-300 ease-in-out  hover:bg-[#f50400] rounded-full "
+                size={40}
+              />
             </button>
           </div>
           <div className="flex flex-col items-start px-6 py-4 gap-4 text-black">
             <MobileDropDown name="Men's" items={menuItems.Mens} />
             <MobileDropDown name="Women's" items={menuItems.Womens} />
             <MobileDropDown name="Kid's" items={menuItems.Kids} />
-            <button className="bg-[#F50963] flex gap-2 items-center mt-4 px-5 py-3 rounded text-white">
+            <button className="bg-[#f50400] flex gap-2 items-center mt-4 px-5 py-3 rounded text-white">
               <span>Getting Started</span>
               <MdArrowForwardIos size={18} />
             </button>
